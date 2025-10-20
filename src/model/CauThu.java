@@ -10,12 +10,11 @@ public class CauThu {
     private int luong;        
     private int soAo;
     private int maCLB;
-    
-    // Constructor mặc định
+   
     public CauThu() {
     }
     
-    // Constructor đầy đủ
+
     public CauThu(String hoTen, String quocTich, String viTri, LocalDate ngaySinh, 
                   int giaMua, int luong, int soAo, int maCLB) {
         this.hoTen = hoTen;
