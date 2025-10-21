@@ -21,19 +21,19 @@ public class CauThuService {
     // tìm kiếm
     public void searchByName(String name) {
         List<CauThu> list = dao.searchByName(name);
-        if (list.isEmpty()) System.out.println("Không tìm thấy.");
+        if (list.isEmpty()) System.out.println("Not Found!");
         else list.forEach(ct -> System.out.printf("%d | %s | %s | %.2f\n", ct.getMaCT(), ct.getHoTen(), ct.getViTri(), ct.getLuong()));
     }
 
     public void searchBySoAo(int soAo) {
         List<CauThu> list = dao.searchBySoAo(soAo);
-        if (list.isEmpty()) System.out.println("Không tìm thấy.");
+        if (list.isEmpty()) System.out.println("Not Found!");
         else list.forEach(ct -> System.out.printf("%d | %s | %s | %d\n", ct.getMaCT(), ct.getHoTen(), ct.getViTri(), ct.getSoAo()));
     }
 
     public void searchByViTri(String viTri) {
         List<CauThu> list = dao.searchByViTri(viTri);
-        if (list.isEmpty()) System.out.println("Không tìm thấy.");
+        if (list.isEmpty()) System.out.println("Not Found!");
         else list.forEach(ct -> System.out.printf("%d | %s | %s | %.2f\n", ct.getMaCT(), ct.getHoTen(), ct.getViTri(), ct.getLuong()));
     }
 
@@ -55,21 +55,21 @@ public class CauThuService {
     // phong do cao nhat (muc 5)
     public void printTopPerformer() {
         PlayerPhongDo p = dao.getTopPlayerByPhongDo();
-        if (p == null) System.out.println("Không có dữ liệu phong độ.");
-        else System.out.println("Top phong độ: " + p);
+        if (p == null) System.out.println("No form data available!");
+        else System.out.println("Top 1: " + p);
     }
 
     // thanh ly (muc 6)
     public void printPlayersToLiquidate() {
         List<PlayerPhongDo> list = dao.getPlayersToLiquidate();
-        if (list.isEmpty()) System.out.println("Không có ai cần thanh lý.");
+        if (list.isEmpty()) System.out.println("No one needs to liquidate.");
         else list.forEach(p -> System.out.println(p));
     }
 
     // doi hinh 11 (muc 7)
     public void printStarting11() {
         List<PlayerPhongDo> team = dao.getStarting11();
-        System.out.println("=== ĐỘI HÌNH 11 ĐỀ XUẤT ===");
+        System.out.println("=== HIGH FORM TEAM ===");
         int idx = 1;
         for (PlayerPhongDo p : team) {
             System.out.printf("%2d. %s\n", idx++, p);
