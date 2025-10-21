@@ -83,13 +83,13 @@ public class TrongTranDau {
     @Override
     public String toString() {
         return "TrongTranDau{" +
-                "maTD=" + maTD +
-                ", maCT=" + maCT +
-                ", theVang=" + theVang +
-                ", theDo=" + theDo +
-                ", banThang=" + banThang +
-                ", soLanCuuThua=" + soLanCuuThua +
-                ", soLanTakle=" + soLanTakle +
+                "MaTD: " + maTD +
+                ", MaCT: " + maCT +
+                ", TheVang: " + theVang +
+                ", TheDo: " + theDo +
+                ", BanThang: " + banThang +
+                ", SoLanCuuThua: " + soLanCuuThua +
+                ", SoLanTakle: " + soLanTakle +
                 '}';
     }
 }
