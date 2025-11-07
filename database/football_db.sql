@@ -1,3 +1,7 @@
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+SET collation_connection = utf8mb4_unicode_ci;
+
 -- ======================================================
 -- DATABASE ARSENAL 2025 (FULL DATA - 5 MATCHES)
 -- Môi trường chạy: MySQL 8.x
@@ -40,7 +44,7 @@ CREATE TABLE CauThu (
     MaCT INT PRIMARY KEY AUTO_INCREMENT,
     HoTen VARCHAR(100),
     QuocTich VARCHAR(50),
-    ViTri VARCHAR(10),
+    ViTri VARCHAR(20),
     NgaySinh DATE,
     GiaMua DECIMAL(15,2),
     Luong DECIMAL(12,2),
@@ -148,17 +152,16 @@ INSERT INTO TrongTranDau (MaTD, MaCT, BanThang, TheVang, TheDo, SoLanCuuThua, So
 (2, 7, 1, 0, 0, 0, 0),
 (2, 19, 1, 0, 0, 0, 0),
 (2, 1, 0, 0, 0, 4, 0),
-(2, 41, 0, 1, 0, 0, 3),
+(2, 13, 0, 1, 0, 0, 3),
 (3, 7, 1, 0, 0, 0, 0),
 (3, 9, 0, 0, 0, 0, 1),
 (3, 1, 0, 0, 0, 6, 0),
 (3, 6, 0, 0, 0, 0, 5),
 (4, 7, 1, 0, 0, 0, 0),
-(4, 29, 1, 0, 0, 0, 0),
+(4, 18, 1, 0, 0, 0, 0),
 (4, 2, 0, 1, 0, 0, 4),
 (4, 1, 0, 0, 0, 3, 0),
 (5, 7, 2, 0, 0, 0, 0),
 (5, 11, 1, 0, 0, 0, 0),
 (5, 8, 1, 0, 0, 0, 0),
 (5, 1, 0, 0, 0, 7, 0);
-
