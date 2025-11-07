@@ -1,29 +1,45 @@
+-- PHẦN 3: VIEW CHO CÁC THỐNG KÊ TỰ ĐỘNG
 -- ======================================================
--- VIEW TRONG DATABASE ARSENAL 2025
--- ======================================================
 
-USE FootballDB;
+-- View 1: Tính phong độ cầu thủ
+DROP VIEW IF EXISTS PhongDo;
+CREATE VIEW PhongDo AS
+SELECT 
+    ct.MaCT,
+    ct.HoTen,
+    ct.ViTri,
+    ct.MaCLB,
+    COALESCE(
+        SUM(
+            ttd.BanThang * 3
+          + ttd.SoLanCuuThua * 2
+          + ttd.SoLanTakle * 1
+          - ttd.TheVang * 2
+          - ttd.TheDo * 3
+        ), 
+        0
+    ) AS PhongDo
+FROM CauThu ct
+LEFT JOIN TrongTranDau ttd ON ct.MaCT = ttd.MaCT
+GROUP BY ct.MaCT, ct.HoTen, ct.ViTri, ct.MaCLB;
 
-CREATE OR REPLACE VIEW PhongDo AS
-SELECT c.MaCT, c.HoTen, c.ViTri,
-       CASE 
-         WHEN c.ViTri IN ('CF','RW','LW') THEN SUM(t.BanThang)
-         WHEN c.ViTri IN ('CB','RB','LB') THEN SUM(t.SoLanTakle)
-         WHEN c.ViTri = 'GK' THEN SUM(t.SoLanCuuThua)
-         ELSE 0
-       END AS PhongDo
-FROM CauThu c
-LEFT JOIN TrongTranDau t ON c.MaCT = t.MaCT
-GROUP BY c.MaCT, c.HoTen, c.ViTri;
+-- View 2: Tổng lương của từng câu lạc bộ
+DROP VIEW IF EXISTS LuongToanDoi;
+CREATE VIEW LuongToanDoi AS
+SELECT 
+    clb.TenCLB,
+    SUM(ct.Luong) AS TongLuong
+FROM CLB clb
+JOIN CauThu ct ON clb.MaCLB = ct.MaCLB
+GROUP BY clb.TenCLB;
 
-CREATE OR REPLACE VIEW LuongToanDoi AS
-SELECT MaCLB, SUM(Luong) AS TongLuong
-FROM CauThu
-GROUP BY MaCLB;
-
-CREATE OR REPLACE VIEW ThongKeBanThang AS
-SELECT c.HoTen, SUM(t.BanThang) AS TongBan
-FROM CauThu c
-LEFT JOIN TrongTranDau t ON c.MaCT = t.MaCT
-GROUP BY c.HoTen;
-
+-- View 3: Thống kê bàn thắng theo cầu thủ
+DROP VIEW IF EXISTS ThongKeBanThang;
+CREATE VIEW ThongKeBanThang AS
+SELECT 
+    ct.MaCT,
+    ct.HoTen,
+    COALESCE(SUM(ttd.BanThang), 0) AS TongBan
+FROM CauThu ct
+LEFT JOIN TrongTranDau ttd ON ct.MaCT = ttd.MaCT
+GROUP BY ct.MaCT, ct.HoTen;
